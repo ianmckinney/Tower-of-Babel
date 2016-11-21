@@ -1,45 +1,33 @@
-const max = process.argv[2];
-   let FizzBuzz = {
-     [Symbol.iterator]() {
+
        // here belongs the FizzBuzz logic
        // Hint：
        // When it's finished you have to return an object
        // with the property `done: true` but before you
        // have to set `done: false`
-     }
-   }
 
-   for (var n of FizzBuzz) {
+
+   const max = +process.argv[2];
+   let FizzBuzz = {
+       [Symbol.iterator]() {
+           let numbers = 1;
+           return {
+               next() {
+                   if(numbers > max)
+                       return { done: true };
+                   let value = numbers;
+                   if(numbers % 15 === 0)
+                       value = 'FizzBuzz';
+                   else if(numbers % 3 === 0)
+                       value = 'Fizz';
+                   else if(numbers % 5 === 0)
+                       value = 'Buzz';
+                   ++numbers;
+                   return { done: false, value: value };
+             }
+         };
+     }
+   };
+
+   for(var n of FizzBuzz) {
      console.log(n);
-   // 1
-   // 2
-   // Fizz
-   // 4
-   // Buzz
-   // Fizz
-   // 7
-   // 8
-   // Fizz
-   // Buzz
-   // 11
-   // Fizz
-   // 13
-   // 14
-   // FizzBuzz
-   // 16
-   // 17
-   // Fizz
-   // 19
-   // Buzz
-   // Fizz
-   // 22
-   // 23
-   // Fizz
-   // Buzz
-   // 26
-   // Fizz
-   // 28
-   // 29
-   // FizzBuzz
-   // ...
    }
